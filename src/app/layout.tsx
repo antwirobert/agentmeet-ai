@@ -6,7 +6,6 @@ import { TRPCReactProvider } from '@/trpc/client'
 import { NuqsAdapter } from 'nuqs/adapters/next'
 
 const inter = Inter({
-  variable: '--font-inter',
   subsets: ['latin'],
 })
 
@@ -24,7 +23,7 @@ export default function RootLayout({
   return (
     <TRPCReactProvider>
       <html lang="en">
-        <body className={`${inter.variable} antialiased`}>
+        <body className={`${inter.className} antialiased`}>
           <NuqsAdapter>{children}</NuqsAdapter>
           <Toaster />
         </body>
