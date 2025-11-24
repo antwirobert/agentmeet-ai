@@ -2,26 +2,58 @@
 
 import { Button } from '@/components/ui/button'
 import { useSidebar } from '@/components/ui/sidebar'
-import { PanelLeftIcon, SearchIcon } from 'lucide-react'
+import { PanelLeftCloseIcon, PanelLeftIcon, SearchIcon } from 'lucide-react'
+import DashboardCommand from './dashboard-command'
 
-export const DashboardNavbar = () => {
-  const { toggleSidebar } = useSidebar()
+import { useEffect, useState } from 'react'
+
+const DashboardNavbar = () => {
+  const { state, toggleSidebar, isMobile } = useSidebar()
+  const [commandOpen, setCommandOpen] = useState(false)
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setCommandOpen((open) => !open)
+      }
+    }
+
+    document.addEventListener('keydown', down)
+    return () => document.removeEventListener('keydown', down)
+  }, [])
 
   return (
-    <nav className="bg-white py-3 border-b px-4 flex items-center gap-2">
-      <Button variant="outline" onClick={toggleSidebar}>
-        <PanelLeftIcon />
-      </Button>
-      <Button variant="outline" className="w-55 flex justify-between">
-        <span className="flex items-center gap-2">
+    <>
+      <DashboardCommand open={commandOpen} setOpen={setCommandOpen} />
+      <nav className="flex px-4 gap-x-2 items-center py-3 border-b bg-background">
+        <Button className="size-9" variant="outline" onClick={toggleSidebar}>
+          {state === 'collapsed' || isMobile ? (
+            <PanelLeftIcon className="size-4" />
+          ) : (
+            <PanelLeftCloseIcon className="size-4" />
+          )}
+        </Button>
+        <Button
+          className="h-9 w-60 justify-start font-normal text-muted-foreground
+                hover:text-muted-foreground"
+          variant="outline"
+          size="sm"
+          onClick={() => setCommandOpen((open) => !open)}
+        >
           <SearchIcon />
           Search
-        </span>
-
-        <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none">
-          <span className="text-xs">⌘</span>K
-        </kbd>
-      </Button>
-    </nav>
+          <kbd
+            className="ml-auto pointer-events-none inline-flex h-5 select-none
+                items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium
+                text-muted-foreground"
+          >
+            <span className="text-xs">&#8984;</span>K
+          </kbd>
+        </Button>
+      </nav>
+    </>
   )
 }
+
+export default DashboardNavbar
