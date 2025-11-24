@@ -58,7 +58,12 @@ export const ChatUI = ({
   }, [client, meetingId, meetingName, userId])
 
   if (!client) {
-    return <LoadingState title="Loading Chat" />
+    return (
+      <LoadingState
+        title="Loading Chat"
+        description="This may take a few seconds"
+      />
+    )
   }
 
   return (
