@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'AgentMeet AI',
   description:
-    'A video calling app powered entirely by ai agents trained for a specific role.',
+    'AgentMeet AI is a next-generation video calling platform where every meeting includes a real-time AI agent trained for a specific role',
 }
 
 export default function RootLayout({
