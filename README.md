@@ -1,3 +1,14 @@
+<p align="center">
+  <a href="https://agent-meet-ai.vercel.app" target="_blank" rel="noopener noreferrer">
+    <img src="/public/Screenshot1.png" alt="Meetings Dashboard" width="45%" style="border-radius: 12px; margin-right: 10px;" />
+  </a>
+
+  <a href="https://agent-meet-ai.vercel.app" target="_blank" rel="noopener noreferrer">
+    <img src="/public/Screenshot2.png" alt="Live AI Meeting" width="45%" style="border-radius: 12px;" />
+  </a>
+</p>
+
+
 # 🚀 AgentMeet AI  
 ### Real-Time Video Meetings Powered by Autonomous AI Agents
 
