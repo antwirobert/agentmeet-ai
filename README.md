@@ -1,9 +1,11 @@
 <p align="center">
-  <img src="/public/Screenshot2.png" alt="Live AI Meeting" width="80%" style="border-radius: 12px;" />
-</p>
+  <a href="https://agent-meet-ai.vercel.app" target="_blank" rel="noopener noreferrer">
+    <img src="/public/Screenshot1.png" alt="Meetings Dashboard" width="45%" style="border-radius: 12px; margin-right: 10px;" />
+  </a>
 
-<p align="center">
-  <img src="/public/Screenshot1.png" alt="Meetings Dashboard" width="60%" style="border-radius: 12px;" />
+  <a href="https://agent-meet-ai.vercel.app" target="_blank" rel="noopener noreferrer">
+    <img src="/public/Screenshot2.png" alt="Live AI Meeting" width="45%" style="border-radius: 12px;" />
+  </a>
 </p>
 
 
