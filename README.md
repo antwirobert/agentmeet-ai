@@ -119,7 +119,7 @@ Modals and dropdowns convert to mobile drawers for a smooth experience.
 ---
 
 ## 📂 Project Structure
-
+```txt
 src/
 │── app/ # Next.js routes (App Router)
 │── components/ # UI components
@@ -129,8 +129,7 @@ src/
 │── jobs/ # Ingest background workflows
 │── styles/ # Tailwind files
 │── utils/ # Helpers & shared logic
-
----
+```
 
 ## 🚀 Getting Started
 
@@ -139,12 +138,13 @@ src/
 git clone https://github.com/antwirobert/agentmeet-ai.git
 cd agentmeet-ai
 ```
-
-``bash
+### 2. Install dependencies
+```bash
 npm install
 ```
 <br />
 
+### 3. Set environment variables
 Create a .env file:
 ```bash
 DATABASE_URL=
@@ -162,6 +162,7 @@ NEXT_PUBLIC_STREAM_CHAT_API_KEY=
 STREAM_CHAT_SECRET_KEY=
 OPENAI_API_KEY=
 ```
+### 4. Start development server
 ```bash
 npm run dev
 ```
@@ -178,3 +179,5 @@ Please submit an issue or pull request.
 
 Robert Antwi
 Creator of AgentMeet AI
+[GitHub](https://github.com/antwirobert/) 
+[LinkedIn](https://www.linkedin.com/in/robert-antwi-a0aab9277/)
