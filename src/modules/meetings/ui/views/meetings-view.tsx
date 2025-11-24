@@ -21,7 +21,7 @@ export const MeetingsView = () => {
   )
 
   return (
-    <div className="w-full pb-5">
+    <div className="w-full pb-10">
       <DataTable
         columns={columns}
         data={data.meetings}
