@@ -1,3 +1,12 @@
+<p align="center">
+  <img src="/public/screenshot2.png" alt="Live AI Meeting" width="80%" style="border-radius: 12px;" />
+</p>
+
+<p align="center">
+  <img src="/public/screenshot1.png" alt="Meetings Dashboard" width="60%" style="border-radius: 12px;" />
+</p>
+
+
 # 🚀 AgentMeet AI  
 ### Real-Time Video Meetings Powered by Autonomous AI Agents
 
