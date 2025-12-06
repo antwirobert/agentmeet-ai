@@ -20,6 +20,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTRPC } from '@/trpc/client'
 import { toast } from 'sonner'
 import { AgentGetOne } from '../../types'
+import { useRouter } from 'next/navigation'
 
 interface AgentFormProps {
   onCancel: () => void
@@ -32,6 +33,7 @@ export const AgentForm = ({
   onSuccess,
   initialValues,
 }: AgentFormProps) => {
+  const router = useRouter()
   const trpc = useTRPC()
   const queryClient = useQueryClient()
 
@@ -48,10 +50,19 @@ export const AgentForm = ({
       onSuccess: async () => {
         await queryClient.invalidateQueries(trpc.agents.getAll.queryOptions({}))
         toast.success('Agent created sucessfully')
+
+        await queryClient.invalidateQueries(
+          trpc.premium.getFreeUsage.queryOptions()
+        )
+
         onSuccess()
       },
       onError: async (error) => {
         toast.error(error.message)
+
+        if (error.data?.code === 'FORBIDDEN') {
+          router.push('/upgrade')
+        }
       },
     })
   )
@@ -101,7 +112,11 @@ export const AgentForm = ({
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input type="text" placeholder="Sales coach" {...field} />
+                <Input
+                  type="text"
+                  placeholder="eg. Startup Strategist"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -114,7 +129,10 @@ export const AgentForm = ({
             <FormItem>
               <FormLabel>Instructions</FormLabel>
               <FormControl>
-                <Textarea placeholder="Sales coach" {...field} />
+                <Textarea
+                  placeholder="eg. Be analytical, data-driven, and challenge assumptions. Give practical, high-leverage startup advice focused on market validation, distribution, and pricing. Ask clarifying questions before giving a recommendation."
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

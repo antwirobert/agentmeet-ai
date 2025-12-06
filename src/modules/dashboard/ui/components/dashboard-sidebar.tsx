@@ -18,6 +18,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserProfile } from './user-profile'
+import { DashboardTrial } from './dashboard-trial'
 
 const firstSection = [
   {
@@ -84,7 +85,7 @@ export const DashboardSidebar = () => {
           <Separator className="opacity-30 bg-[#616771]" />
         </div>
 
-        {/* <SidebarGroup>
+        <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {secondSection.map((item) => (
@@ -107,9 +108,10 @@ export const DashboardSidebar = () => {
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup> */}
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
+        <DashboardTrial />
         <UserProfile />
       </SidebarFooter>
     </Sidebar>

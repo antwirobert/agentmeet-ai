@@ -70,7 +70,10 @@ export const UserProfile = () => {
             <DrawerDescription>{session.user.email}</DrawerDescription>
           </DrawerHeader>
           <DrawerFooter>
-            <Button variant="outline">
+            <Button
+              variant="outline"
+              onClick={() => authClient.customer.portal()}
+            >
               Biling <CreditCardIcon />
             </Button>
             <Button variant="outline" onClick={handleLogout}>
@@ -119,7 +122,10 @@ export const UserProfile = () => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer text-black flex justify-between items-center">
+          <DropdownMenuItem
+            onClick={() => authClient.customer.portal()}
+            className="cursor-pointer text-black flex justify-between items-center"
+          >
             Billing
             <CreditCardIcon />
           </DropdownMenuItem>

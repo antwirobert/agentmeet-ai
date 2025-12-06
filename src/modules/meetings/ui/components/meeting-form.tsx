@@ -25,6 +25,7 @@ import { ResponsiveDialog } from '@/components/responsive-dialog'
 import { AgentForm } from '@/modules/agents/ui/components/agent-form'
 import { useState } from 'react'
 import { MAX_PAGE_SIZE } from '@/constants'
+import { useRouter } from 'next/navigation'
 
 interface MeetingFormProps {
   onCancel: () => void
@@ -39,6 +40,7 @@ export const MeetingForm = ({
 }: MeetingFormProps) => {
   const [open, setOpen] = useState(false)
   const [searchAgent, setSearchAgent] = useState('')
+  const router = useRouter()
   const trpc = useTRPC()
   const queryClient = useQueryClient()
 
@@ -64,10 +66,18 @@ export const MeetingForm = ({
           trpc.meetings.getAll.queryOptions({})
         )
         toast.success('Meeting created sucessfully')
+
+        await queryClient.invalidateQueries(
+          trpc.premium.getFreeUsage.queryOptions()
+        )
         onSuccess(data.id)
       },
       onError: async (error) => {
         toast.error(error.message)
+
+        if (error.data?.code === 'FORBIDDEN') {
+          router.push('/upgrade')
+        }
       },
     })
   )
@@ -117,7 +127,7 @@ export const MeetingForm = ({
                 <FormControl>
                   <Input
                     type="text"
-                    placeholder="Math consultations"
+                    placeholder="eg. Market Validation Call"
                     {...field}
                   />
                 </FormControl>
