@@ -20,6 +20,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useTRPC } from '@/trpc/client'
 import { toast } from 'sonner'
 import { AgentGetOne } from '../../types'
+import { useRouter } from 'next/navigation'
 
 interface AgentFormProps {
   onCancel: () => void
@@ -32,6 +33,7 @@ export const AgentForm = ({
   onSuccess,
   initialValues,
 }: AgentFormProps) => {
+  const router = useRouter()
   const trpc = useTRPC()
   const queryClient = useQueryClient()
 
@@ -47,11 +49,18 @@ export const AgentForm = ({
     trpc.agents.create.mutationOptions({
       onSuccess: async () => {
         await queryClient.invalidateQueries(trpc.agents.getAll.queryOptions({}))
+        await queryClient.invalidateQueries(
+          trpc.premium.getFreeUsage.queryOptions()
+        )
         toast.success('Agent created sucessfully')
         onSuccess()
       },
       onError: async (error) => {
         toast.error(error.message)
+
+        if (error.data?.code === 'FORBIDDEN') {
+          router.push('/upgrade')
+        }
       },
     })
   )

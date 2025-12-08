@@ -41,6 +41,9 @@ export const MeetingIdView = ({ meetingId }: { meetingId: string }) => {
         await queryClient.invalidateQueries(
           trpc.meetings.getAll.queryOptions({})
         )
+        await queryClient.invalidateQueries(
+          trpc.premium.getFreeUsage.queryOptions()
+        )
         router.push('/meetings')
       },
       onError: (error) => {

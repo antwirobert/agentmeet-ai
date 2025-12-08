@@ -38,6 +38,9 @@ export const AgentIdView = ({ agentId }: { agentId: string }) => {
     trpc.agents.delete.mutationOptions({
       onSuccess: async () => {
         await queryClient.invalidateQueries(trpc.agents.getAll.queryOptions({}))
+        await queryClient.invalidateQueries(
+          trpc.premium.getFreeUsage.queryOptions()
+        )
         router.push('/agents')
       },
       onError: (error) => {
